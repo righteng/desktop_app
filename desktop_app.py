@@ -34,9 +34,16 @@ class Application(tkinter.Frame):
         self.message = tkinter.Message(self)
         self.message.pack()
 
+        #チェックボタン
+        self.is_student = tkinter.BooleanVar()
+        chk_btn = tkinter.Checkbutton(self, text = '同意しますか', variable = self.is_student)
+        chk_btn.pack()
+
     def input_handler(self):
+        print('「実行」が押されました')
         text = self.text_box.get()
         self.message['text'] = text + '!!'
+        print(f'入力値： {text}')
 
 root = tkinter.Tk()
 
