@@ -25,25 +25,38 @@ class Application(tkinter.Frame):
         self.text_box.pack()
 
         # 実行ボタン
-        submit_btn = tkinter.Button(self)
+        submit_btn = tkinter.Button(self, text = '実行', command = self.input_handler)
         submit_btn['text'] = '実行'
-        submit_btn['command'] = self.input_handler
+#        submit_btn['command'] = self.input_handler
         submit_btn.pack()
 
         # メッセージ出力
         self.message = tkinter.Message(self)
         self.message.pack()
 
+        #ラジオボタン
+        self.selected_radio = tkinter.StringVar()
+        radio_1 = tkinter.Radiobutton(self, text = 'A', value = 'A', variable = self.selected_radio)
+        radio_2 = tkinter.Radiobutton(self, text = 'B', value = 'B', variable = self.selected_radio)
+        radio_3 = tkinter.Radiobutton(self, text = 'C', value = 'C', variable = self.selected_radio)
+        radio_4 = tkinter.Radiobutton(self, text = 'D', value = 'D', variable = self.selected_radio)
+        radio_1.pack()
+        radio_2.pack()
+        radio_3.pack()
+        radio_4.pack()
+
         #チェックボタン
         self.is_student = tkinter.BooleanVar()
         chk_btn = tkinter.Checkbutton(self, text = '同意しますか', variable = self.is_student)
         chk_btn.pack()
 
+    #実行ボタン押下時にプロンプト上に文字表示
     def input_handler(self):
         print('「実行」が押されました')
         text = self.text_box.get()
-        self.message['text'] = text + '!!'
+        self.message['text'] = '回答：' + text
         print(f'入力値： {text}')
+        print(self.selected_radio.get())
 
 root = tkinter.Tk()
 
